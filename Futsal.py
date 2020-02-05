@@ -10,15 +10,27 @@ import excel_access
 
 STOCK_WEB_SITE_PATH = 'https://yoyaku.harp.lg.jp/resident/Login.aspx'
 
-#chrome = chrome_driver.ChromeWebDriver()
-#chrome.change_url(STOCK_WEB_SITE_PATH)
-
+# Excelファイルを文字列として読み込む
 excel = excel_access.ExcelAccess("database.xlsx")
 
+# セルの値を取得
+print(excel.ReadCell(1,1))
 
-login_info = excel.get_excel_data()
+# 行の値を取得
+for item in excel.ReadRow(1):
+    print(item)
 
-print(login_info[0][0])
-print(login_info[0][1])
-print(login_info[0][2])
-print(login_info[0][3])
+# 列の値を取得
+for item in excel.ReadColumn(1):
+    print(item)
+
+# 範囲の値を取得
+for item in excel.ReadArea((2,2),(3,3)):
+    print(item)
+
+
+excel.WriteCell(1,1,"test")
+
+print(excel.ReadAll())
+
+excel.SaveExcel()
