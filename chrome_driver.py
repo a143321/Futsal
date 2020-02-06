@@ -4,10 +4,11 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+import os
 
 MAX_WAIT_TIME_SEC = 60
 
-class ChromeWebDriver():
+class SeleniumChromeAccess():
 
     def __init__(self):
         self.driver = self.get_web_driver()
@@ -65,6 +66,21 @@ class ChromeWebDriver():
     # 要素のテキスト文を取得する関数
     def get_element_text(self, element_XPath : str) -> str:
         return self.get_element(element_XPath).text
+
+    # キャプチャを取得する
+    def get_screen_shot(self, folder_path, file_path):
+
+        folder_path = folder_path.replace(os.path.sep, '/')
+        
+        os.makedirs(folder_path, exist_ok=True)
+
+        full_path = os.path.join(folder_path, file_path)
+
+        self.driver.save_screenshot(full_path)
+
+
+
+
 
 
 
