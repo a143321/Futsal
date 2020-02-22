@@ -43,7 +43,7 @@ class ExcelAccess():
             column_index : int : データ列(最初のデータであれば0)
         戻り値 : str型の一次元配列 : <class 'numpy.ndarray'>
         """
-        return self.df.iloc[row_index, 0:].values
+        return self.df.iloc[row_index, 0:]
 
 
     def ReadColumn(self, column_index):
@@ -52,7 +52,7 @@ class ExcelAccess():
             row_index : int : データ行 (最初のデータであれば0)
         戻り値 : 一次元配列 : <class 'numpy.ndarray'>
         """
-        return self.df.iloc[0:, column_index].values
+        return self.df.iloc[0:, column_index]
 
 
     def ReadArea(self, start_cell, end_cell):
